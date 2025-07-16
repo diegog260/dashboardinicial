@@ -12,3 +12,36 @@ body {
   background: #1a1a1a;
   width: 300px;
 }
+.painel-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+#config-btn {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 20px;
+  cursor: pointer;
+}.painel-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+#config-btn {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.config-menu {
+  background-color: #222;
+  color: white;
+  padding: 10px;
+  margin-top: 10px;
+  border-radius: 8px;
+}

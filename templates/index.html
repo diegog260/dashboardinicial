@@ -1,18 +1,95 @@
-
 <!DOCTYPE html>
-<html>
+<html lang="pt-br">
 <head>
-  <title>Dashboard Mini Índice</title>
-  <link rel="stylesheet" href="/static/style.css">
-  <script src="https://cdn.socket.io/4.5.4/socket.io.min.js"></script>
+    <meta charset="UTF-8">
+    <title>Dashboard Modular</title>
+    <style>
+        body {
+            margin: 0;
+            background-color: #1e1e1e;
+            font-family: Arial, sans-serif;
+            color: white;
+        }
+        .window {
+            position: absolute;
+            width: 300px;
+            height: 200px;
+            background-color: #2d2d2d;
+            border: 1px solid #444;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.5);
+            overflow: hidden;
+        }
+        .window-header {
+            background-color: #3a3a3a;
+            padding: 10px;
+            cursor: move;
+            font-weight: bold;
+        }
+        .window-body {
+            padding: 10px;
+        }
+    </style>
 </head>
 <body>
-  <div class="painel">
-    <h1>Mini Índice</h1>
-    <p id="status">Carregando...</p>
-    <p id="prob">---</p>
-  </div>
 
-  <script src="/static/script.js"></script>
+    <!-- Módulo Mini Índice -->
+    <div class="window-header">
+  Mini Índice
+  <button id="config-btn" onclick="toggleConfigMenu()" style="float: right; background: none; border: none; color: white; font-size: 16px;">⚙</button>
+</div>
+
+<div id="config-menu" class="config-menu" style="display: none; background: #222; padding: 10px; color: white; border-radius: 5px; position: absolute; z-index: 10;">
+  <label>Fonte:
+    <select id="font-select">
+      <option value="Arial">Arial</option>
+      <option value="Verdana">Verdana</option>
+      <option value="Courier New">Courier New</option>
+    </select>
+  </label><br>
+  <label>Tamanho da fonte:
+    <input type="number" id="font-size" value="16"> px
+  </label><br>
+  <label>Cor da janela:
+    <input type="color" id="window-color" value="#333333">
+  </label><br>
+  <label>Cor de fundo:
+    <input type="color" id="bg-color" value="#111111">
+  </label><br>
+  <button onclick="resetDefaults()">Resetar para padrão</button>
+</div>
+
+<div class="window-body">
+  <p id="grafico">Carregando gráfico...</p>
+</div>
+    </div>
+
+    <script>
+        // Permitir arrastar janelas
+        const makeDraggable = (element) => {
+            const header = element.querySelector('.window-header');
+            let offsetX = 0, offsetY = 0, isDragging = false;
+
+            header.addEventListener('mousedown', (e) => {
+                offsetX = e.clientX - element.offsetLeft;
+                offsetY = e.clientY - element.offsetTop;
+                isDragging = true;
+            });
+
+            document.addEventListener('mousemove', (e) => {
+                if (isDragging) {
+                    element.style.left = (e.clientX - offsetX) + 'px';
+                    element.style.top = (e.clientY - offsetY) + 'px';
+                }
+            });
+
+            document.addEventListener('mouseup', () => {
+                isDragging = false;
+            });
+        };
+
+        document.querySelectorAll('.window').forEach(makeDraggable);
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+
 </body>
 </html>
