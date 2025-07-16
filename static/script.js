@@ -3,7 +3,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     if (divGrafico) {
         divGrafico.innerHTML = `
-            <div style="padding: 20px; background-color: #1e1e1e; color: #00ff99; text-align: center; border-radius: 8px;">
+            <div style="padding: 20px; background-color: #1e1e1e; color: #00ff99; text-align: center; border-radius: 10px;">
                 ✅ Gráfico carregado com sucesso!<br>
                 <small>(Conteúdo simulado vindo do script.js)</small>
             </div>
